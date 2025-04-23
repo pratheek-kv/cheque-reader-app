@@ -24,12 +24,13 @@ function App() {
     formData.append("file", image);
 
     try {
-      const response = await fetch("https://your-api.com/extract-cheque-info", {
-        method: "POST",
-        body: formData,
-      });
+      // const response = await fetch("https://your-api.com/extract-cheque-info", {
+      //   method: "POST",
+      //   body: formData,
+      // });
 
-      const data = await response.json();
+      // const data = await response.json();
+      const data = {name: "Pratheek", accountNumber : "1234"}
       setResult(data);
     } catch (err) {
       console.error("Upload failed", err);
@@ -46,11 +47,15 @@ function App() {
         type="file"
         accept="image/*"
         onChange={handleImageChange}
-        className="mb-4"
+        className="text-sm text-stone-500 file:mr-5 file:py-1 file:px-3 file:border-[1px]
+                   file:text-xs file:font-medium file:bg-stone-50 file:text-stone-700 hover:file:cursor-pointer hover:file:bg-blue-50
+                 hover:file:text-blue-700 mb-10"
       />
-      {previewUrl && (
+
+    {previewUrl && (
         <img src={previewUrl} alt="Preview" className="w-64 h-auto mb-4 rounded shadow" />
       )}
+
       <button
         onClick={handleSubmit}
         disabled={loading}
