@@ -62,27 +62,29 @@ function App() {
               value={value.name}
               onChange={handleChange}
               error={( !(result) || (value.name === result.name) )? false : true}
-              errorMessage= {`Provided Name doesnot match the name in the cheque. Name in cheque is: ${result.name} `}
+              errorMessage= {`Provided Name doesnot match the name in the cheque. Name in cheque is: ${result? result.name : ""} `}
             />
           </div>
 
           <div className="mt-1">
             <InputField
               label="Bank Name"
+              name="Bank_Name"
               value={value.Bank_Name}
               onChange={handleChange}
               error={( !(result) || (value.Bank_Name === result.Bank_Name) )? false : true}
-              errorMessage= {`Bank Name Entered does not match. Bank name in cheque is : ${result.Bank_Name}`}
+              errorMessage= {`Bank Name Entered does not match. Bank name in cheque is : ${result? result.Bank_Name : ""}`}
             />
           </div>
 
           <div className="mt-1">
             <InputField
               label="Account Number"
+              name="Account_Number"
               value={value.Account_Number}
               onChange={handleChange}
               error={( !(result) || (value.Account_Number === result.Account_Number) )? false : true}
-              errorMessage={`Account Number does not match. Account Number in cheque is : ${result.Account_Number}`}
+              errorMessage={`Account Number does not match. Account Number in cheque is : ${result? result.Account_Number : ""}`}
             />
           </div>
 
