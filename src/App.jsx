@@ -32,9 +32,7 @@ function App() {
         method: "POST",
         body: formData,
       });
-      debugger;
-      // const data = await response.json();
-      const data = { name: "Pratheek", accountNumber: "1234" }
+      const data = await response.json();
       setResult(data);
     } catch (err) {
     } finally {
