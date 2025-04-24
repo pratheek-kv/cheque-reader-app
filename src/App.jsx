@@ -52,7 +52,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center p-4 w-full">
-      <h1 className="text-3xl font-bold mb-6">Cancelled Cheque Reader</h1>
+      <h1 className="text-3xl font-bold mb-6">Cheque Reader Sample</h1>
       <div className="mb-4 w-1/2">
         <div className="mt-6 bg-white p-4 rounded shadow w-full">
           <div className="mt-1">
