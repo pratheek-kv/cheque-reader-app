@@ -59,8 +59,8 @@ function App() {
               name="name"
               value={value.name}
               onChange={handleChange}
-              error={( !(result) || (value.name === result.name) )? false : true}
-              errorMessage= {`Provided Name doesnot match the name in the cheque. Name in cheque is: ${result? result.name : ""} `}
+              error={( !(result) || (value.name?.toLowerCase() === result.name?.toLowerCase()) )? false : true}
+              errorMessage= {`Provided Name doesnot match the name in the cheque. Name in cheque is: ${result ? result.name ? result.name : "" : ""} `}
             />
           </div>
 
@@ -70,7 +70,7 @@ function App() {
               name="Bank_Name"
               value={value.Bank_Name}
               onChange={handleChange}
-              error={( !(result) || (value.Bank_Name === result.Bank_Name) )? false : true}
+              error={( !(result) || (value.Bank_Name.toLowerCase() === result.Bank_Name.toLowerCase()) )? false : true}
               errorMessage= {`Bank Name Entered does not match. Bank name in cheque is : ${result? result.Bank_Name : ""}`}
             />
           </div>
