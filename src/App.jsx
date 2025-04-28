@@ -28,13 +28,19 @@ function App() {
     formData.append("file", image);
 
     try {
-      const response = await fetch("http://localhost:5678/webhook-test/ed5a3be4-53f1-4bea-85ea-9f8c03b95943", {
+      const response = await fetch("http://localhost:5678/webhook-test/validate", {
         method: "POST",
         body: formData,
       });
       debugger;
-      // const data = await response.json();
-      const data = { name: "Pratheek", accountNumber: "1234" }
+      const data = await response.json();
+      // const data = { name: "Pratheek", accountNumber: "1234" }
+      value.name = !value.name ? data.Name : value.name;
+      value.Bank_Name = !value.Bank_Name ? data.Bank_Name : value.Bank_Name;
+      value.Account_Number = !value.Account_Number ? data.Account_Number : value.Account_Number;
+      value.IFSC_Code = !value.IFSC_Code ? data.IFSC_Code : value.IFSC_Code;
+      value.Branch = !value.Branch ? data.Branch : value.Branch;
+
       setResult(data);
     } catch (err) {
     } finally {
@@ -61,8 +67,8 @@ function App() {
               name="name"
               value={value.name}
               onChange={handleChange}
-              error={( !(result) || (value.name === result.name) )? false : true}
-              errorMessage= {`Provided Name doesnot match the name in the cheque. Name in cheque is: ${result? result.name : ""} `}
+              error={( !(result) || !(result.Name === "null") || (value.name.toLowerCase() === result.Name.toLowerCase()) )? false : true}
+              errorMessage= {`Provided Name doesnot match the name in the cheque. Name in cheque is: ${result? result.Name : ""} `}
             />
           </div>
 
@@ -72,7 +78,7 @@ function App() {
               name="Bank_Name"
               value={value.Bank_Name}
               onChange={handleChange}
-              error={( !(result) || (value.Bank_Name === result.Bank_Name) )? false : true}
+              error={( !(result) || (value.Bank_Name.toLowerCase() === result.Bank_Name.toLowerCase()) )? false : true}
               errorMessage= {`Bank Name Entered does not match. Bank name in cheque is : ${result? result.Bank_Name : ""}`}
             />
           </div>
@@ -94,8 +100,8 @@ function App() {
               name="IFSC_Code"
               value={value.IFSC_Code}
               onChange={handleChange}
-              error={( !(result) || (value.IFSC_Code === result.IFSC_Code) )? false : true}
-              errorMessage="IFSC does not match"
+              error={( !(result) || (value.IFSC_Code.toLowerCase() === result.IFSC_Code.toLowerCase()) )? false : true}
+              errorMessage={`IFSC does not match. IFSC in cheque is : ${result? result.IFSC_Code : ""}`} 
             />
           </div>
 
@@ -126,7 +132,7 @@ function App() {
 
         <button onClick={handleSubmit} disabled={loading}
           className="bg-blue-600 text-white px-4 rounded hover:bg-blue-700 disabled:opacity-50" >
-          {loading ? "Processing..." : "Submit"}
+          {loading ? "Processing..." : "Validate"}
         </button>
 
       </div>
